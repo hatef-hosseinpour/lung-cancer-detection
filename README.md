@@ -5,5 +5,7 @@ In this project, an attempt has been made to check the possibility of lung cance
 
 The dataset used in this project can be accessed from this [link](https://www.kaggle.com/datasets/h13380436001/h-lung-cancer).
 
-- JavaScript, Bootstrap v5.1.3, CSS3, HTML5 use with the site of this frontend design.
-- The backend of the site is done using the Python programming language and the Flask framework.
+- The frontend design of the site is JavaScript, Bootstrap v5.1.3, CSS3, HTML5.
+- The backend of the site is done using the Python programming language and the Flask framework
+
+**VotingClassifier** is used in this project, A voting classifier is a machine learning estimator that trains various base models or estimators and predicts on the basis of aggregating the findings of each base estimator

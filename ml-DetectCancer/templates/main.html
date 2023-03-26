@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='pics/lungs.png') }}">
+
+	<title>وب اپلیکیشن پیشبینی بیماری</title>
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/et-icons.css') }}">
+	<!-- Main style -->
+	<link type="text/css" href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+</head>
+
+<body onload="checkCookie()">
+
+	<!-- start loading -->
+	<div class="preloader">
+		<img src="{{ url_for('static', filename='pics/loader.gif') }}" alt="Preloader image">
+	</div>
+	<!-- end loading -->
+	<!-- start navabr and menu -->
+	<nav class="navbar">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{ url_for('home') }}"><img
+						src="{{ url_for('static', filename='pics/lungs.png') }}"
+						data-active-url="{{ url_for('static', filename='pics/lungs.png') }}" alt=""></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left main-nav">
+					<li><a class="text-danger" href="#services">پیشبینی</a></li>
+					<li><a class="text-danger" href="{{ url_for('contactUs') }}">تماس با ما</a></li>
+					<li><a class="text-danger" href="{{ url_for('aboutUs') }}">درباره ما</a></li>
+					<!-- <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">ورود</a></li> -->
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong> {{prediction_text}}</strong>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> -->
+
+	<!-- end navabr and menu -->
+	<!-- start intro section -->
+	<header id="intro">
+
+		<div class="container">
+
+			<div class="table">
+
+				<div class="header-text">
+
+					<div class="row">
+
+						<!-- start type cursor -->
+						<div class="col-md-12 text-center">
+							<h3 class="light white">به بدن خود اهمیت دهید</h3>
+							<h1 class="white typed">تنها جایی که باید در آن زندگی کنید اینجاست</h1>
+							<span class="typed-cursor">|</span>
+						</div>
+						<!-- end type cursor -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</header>
+	<section>
+		<div class="cut cut-top"></div>
+		<div class="container">
+			<div class="row intro-tables">
+
+				<!-- end intro carousel 1 -->
+				<div class="col-md-4">
+					<div class="intro-table intro-table-hover">
+						<h5 class="white heading"></h5>
+						<div class="owl-testimonials bottom">
+							<div class="item text-center">
+								<h5 class="white heading conten"><strong>به سوالات با دقت پاسخ دهید </strong></h5>
+								<h5 class="white heading light author"> </h5>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- start intro central box -->
+				<div class="col-md-4 bg-dark">
+					<div class="intro-table intro-table-first">
+						<h5 class="white heading"></h5>
+						<div class="owl-testimonials bottom">
+							<div class="item text-center">
+								<h5 class="white heading content"><strong> این سایت احتمال بیماری را بررسی
+										میکند</strong></h5>
+								<h5 class="white heading light author"> </h5>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="intro-table intro-table-third">
+						<h5 class="white heading"></h5>
+						<div class="owl-testimonials bottom">
+							<div class="item text-center">
+								<h5 class="white heading content"> <strong> پزشک متخصص باید نظر نهایی را بدهد </strong>
+								</h5>
+								<h5 class="white heading light author"> </h5>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- end intro carousel 2 -->
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			{% for message in messages %}
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h4><strong>{{message}}</strong></h4>
+			</div>
+			{% endfor %}
+			{% endif %}
+			{% endwith %}
+		</div>
+
+	</section>
+
+	<!-- end intro section -->
+	<!-- start services section -->
+	<form action="{{ url_for('predict') }}" method="post">
+		<section id="services" class="section section-padded">
+			<div class="container">
+				<div class="row text-center title">
+					<h2>پیشبینی</h2>
+					<h4 class="light muted"> لطفا به پرسش های زیر با دقت پاسخ دهید </h4>
+				</div>
+				<div class="row services">
+					<!-- start services section box1 Gender -->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/gender.png') }}" alt="" class="icon">
+							</div>
+							<h4 class="heading" id="gender-heading">جنسیت</h4>
+							<p class="description"> لطفا جنسیت خود را مشخص کنید</p>
+							<p class="description"> مذکر </p>
+							<input type="radio" name="gender" value="1" id="gender-1"
+								class="description form-check-input" required>
+							<p class="description form-check-label"> مونث </p>
+							<input type="radio" name="gender" value="0" id="gende-0"
+								class="description form-check-input" required>
+
+						</div>
+
+					</div>
+					<!-- end services section box1 -->
+
+					<!-- start services section box2 Age -->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/age-group.png') }}" alt="" class="icon">
+							</div>
+							<h4 class="heading">سن</h4>
+							<p class="description form-check-label"> لطفا سن خود را وارد کنید</p>
+							<input type="number" name="age" id="age" class="description" min="18" required>
+						</div>
+					</div>
+					<!-- end services section box2 -->
+
+					<!-- start services section box3 Smoking -->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/smoking.png') }}" alt="" class="icon">
+							</div>
+							<h4 class="heading">دخانیات</h4>
+							<p class="description"> آیا سیگار می کشید؟</p>
+							<p class="description form-check-label"> بله </p>
+							<input type="radio" name="smoking" value="2" id="smoking"
+								class="description form-check-input" required>
+							<p class="description form-check-label"> خیر </p>
+							<input type="radio" name="smoking" value="1" id="smoking"
+								class="description form-check-input" required>
+						</div>
+					</div>
+					<!-- end services section box3 -->
+
+					<!-- start services section box4 anxiety -->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/anxiety.png') }}" alt="" class="icon">
+							</div>
+							<h4 class="heading">اضطراب</h4>
+							<p class="description"> آیا استرس و اضطراب دارید ؟
+							</p>
+							<p class="description form-check-label"> بله </p>
+							<input type="radio" name="Anxiety" value="2" id="Anxiety"
+								class="description form-check-input" required>
+							<p class="description form-check-label"> خیر </p>
+							<input type="radio" name="Anxiety" value="1" id="Anxiety"
+								class="description form-check-input" required>
+						</div>
+					</div>
+					<!-- end services section box4 -->
+
+					<!-- start services section box5  peer-pressure-->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/peer-pressure.png') }}" alt=""
+									class="icon">
+							</div>
+							<h4 class="heading"> فشار هم نوعان </h4>
+							<p class="description"> آیا کشیدن سیگار را تحت تاثیر فشار دیگر شروع کرده اید؟</p>
+							<p class="description form-check-label"> بله </p>
+							<input type="radio" name="peerPressure" value="2" id="peerPressure"
+								class="description form-check-input" required>
+							<p class="description form-check-label"> خیر </p>
+							<input type="radio" name="peerPressure" value="1" id="peerPressure"
+								class="description form-check-input" required>
+						</div>
+					</div>
+					<!-- end services section box5 -->
+
+					<!-- start services section box6 cough -->
+
+					<div class="col-md-4">
+						<div class="service">
+							<div class="icon-holder">
+								<img src="{{ url_for('static', filename='pics/cough.png') }}" alt="" class="icon">
+							</div>
+							<h4 class="heading">سرفه </h4>
+							<p class="description"> آیا سرفه دارید؟</p>
+							<p class="description form-check-label"> بله </p>
+							<input type="radio" name="Coughing" value="2" id="Coughing"
+								class="description form-check-input" required>
+							<p class="description form-check-label"> خیر </p>
+							<input type="radio" name="Coughing" value="1" id="Coughing"
+								class="description form-check-input" required>
+
+						</div>
+					</div>
+					<!-- end services section box6 -->
+
+					<!-- start services section box7  chronic Disease -->
+
+					<div class="row services">
+						<div class="col-md-4">
+							<div class="service">
+								<div class="icon-holder">
+									<img src="{{ url_for('static', filename='pics/heart-problem.png') }}" alt=""
+										class="icon">
+								</div>
+								<h4 class="heading">بیماری مزمن</h4>
+								<p class="description"> آیا سابقه بیماری مزمن دارید ؟ </p>
+								<p class="description form-check-label"> بله </p>
+								<input type="radio" name="chronicDisease" value="2" id="chronicDisease"
+									class="description form-check-input" required>
+								<p class="description form-check-label"> خیر </p>
+								<input type="radio" name="chronicDisease" value="1" id="chronicDisease"
+									class="description form-check-input" required>
+							</div>
+						</div>
+						<!-- end services section box7 -->
+
+						<div class="row services">
+							<!-- start services section box8  shortness Of Breath-->
+
+							<div class="col-md-4">
+								<div class="service">
+									<div class="icon-holder">
+										<img src="{{ url_for('static', filename='pics/breathing.png') }}" alt=""
+											class="icon">
+									</div>
+									<h4 class="heading">تنگی نفس</h4>
+									<p class="description"> آیا هنگام دم و بازدم احساس تنگی نفس دارید؟</p>
+									<p class="description form-check-label"> بله </p>
+									<input type="radio" name="shortnessOfBreath" value="2" id="shortnessOfBreath"
+										class="description form-check-input" required>
+									<p class="description form-check-label"> خیر </p>
+									<input type="radio" name="shortnessOfBreath" value="1" id="shortnessOfBreath"
+										class="description form-check-input" required>
+								</div>
+							</div>
+							<!-- end services section box8 -->
+
+							<div class="row services">
+								<!-- start services section box9  chestPain -->
+
+								<div class="col-md-4">
+									<div class="service">
+										<div class="icon-holder">
+											<img src="{{ url_for('static', filename='pics/chest-pain.png') }}" alt=""
+												class="icon">
+										</div>
+										<h4 class="heading">درد قفسه سینه</h4>
+										<p class="description"> آیا در قفسه سینه تان احساس درد میکنید؟</p>
+										<p class="description form-check-label"> بله </p>
+										<input type="radio" name="chestPain" value="2" id="chestPain"
+											class="description form-check-input" required>
+										<p class="description form-check-label"> خیر </p>
+										<input type="radio" name="chestPain" value="1" id="chestPain"
+											class="description form-check-input" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end services section box9 -->
+
+						<!-- background -->
+						<!-- <div class="cut cut-bottom"></div> -->
+						<div class="text-center">
+							<button href="ansQuestions" onclick="isvalid()" data-toggle="" data-target=""
+								class="btn btn-blue btn-lg text-center btn-primary" type="submit">ثبت</button> <br><br>
+							<br>
+							<div class="text-center text-info">
+								<!-- <h3><strong> {{prediction_text}}</strong> </h3> <br><br> -->
+
+							</div>
+						</div>
+
+		</section>
+
+
+	</form>
+	<!-- <strong> {{prediction_text}}</strong> -->
+	<!-- end text carousel section -->
+	<!-- start modal box for registering -->
+	<!-- <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+			<p>{{ prediction_text }}</p>
+		</div>
+	</div>
+</div>  -->
+	<!-- end modal box for registering -->
+
+
+	<!-- Start scroll to top -->
+	<button type="button" class="btn btn-sm" id="back-to-top">
+		<i class="fas fa-arrow-up fa " style="color: red;"></i>
+
+	</button>
+	<!-- End scroll to top -->
+
+	<!-- start footer section -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">پیشبینی بیماری سرطان ریه</h3>
+					<h5 class="light regular light-white"> با استفاده از یادگیری ماشین </h5>
+
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-8">
+					<p>&copy; تمامی حقوق این سایت متعلق به دانشگاه مازندران است</a></p>
+
+				</div>
+				<div class="col-sm-4 text-left text-center-mobile">
+					<ul class="social-footer">
+						<li><a href="https://www.linkedin.com/feed" target="_blank"><i class="fa fa-linkedin"></i></a>
+						</li>
+						<li><a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="https://www.whatsapp.com" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer section -->
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+		<ul>
+		</ul>
+		<a href="#" class="close-link"><i class="fa fa-arrow-up"></i></a>
+	</div>
+	<!-- Holder for mobile navigation -->
+
+	<!-- Scripts -->
+	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.onepagenav.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+	<!-- making an owl carousel rtl -->
+	<script>
+		$('.owl-carousel .owl-schedule').owlCarousel({
+			rtl: true
+		})
+		function isvalid() {
+			var getSelectedGender = document.querySelector('input[name="gender"]:checked');
+			var getSelectedAge = document.getElementById('age').value;
+			var getSelectedSmoking = document.querySelector('input[name="smoking"]:checked');
+			var getSelectedAnxiety = document.querySelector('input[name="Anxiety"]:checked');
+			var getSelectedPeerPressure = document.querySelector('input[name="peerPressure"]:checked');
+			var getSelectedChronicDisease = document.querySelector('input[name="chronicDisease"]:checked');
+			var getSelectedCoughing = document.querySelector('input[name="Coughing"]:checked');
+			var getSelectedShortnessOfBreath = document.querySelector('input[name="shortnessOfBreath"]:checked');
+			var getSelectedChestPain = document.querySelector('input[name="chestPain"]:checked');
+
+			if (getSelectedGender == null) {
+				alert("لطفا جنسیت خود را مشخص کنید");
+			}
+			else if (getSelectedAge == "") {
+				alert("لطفا سن خود را وارد کنید ");
+			}
+			else if (getSelectedSmoking == null) {
+				alert("لطفا به سوال مرتبط با دخانیات پاسخ دهید");
+			}
+			else if (getSelectedAnxiety == null) {
+				alert("لطفا به سوال مرتبط با اضطراب پاسخ دهید");
+			}
+			else if (getSelectedPeerPressure == null) {
+				alert("لطفا به سوال مرتبط با فشار هم نوعان پاسخ دهید");
+			}
+			else if (getSelectedCoughing == null) {
+				alert("لطفا به سوال مرتبط با سرفه پاسخ دهید");
+			}
+			else if (getSelectedChronicDisease == null) {
+				alert("لطفا به سوال مرتبط با بیماری مزمن پاسخ دهید");
+			}
+			else if (getSelectedShortnessOfBreath == null) {
+				alert("لطفا به سوال مرتبط با تنگی نفس پاسخ دهید");
+			}
+			else if (getSelectedChestPain == null) {
+				alert("لطفا به سوال مرتبط با درد قفسه سینه پاسخ دهید");
+			}
+
+
+		}
+		function setCookie(cname, cvalue, exdays) {
+			const d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			let expires = "expires=" + d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function getCookie(cname) {
+			let name = cname + "=";
+			let ca = document.cookie.split(';');
+			for (let i = 0; i < ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		function checkCookie() {
+			let user = getCookie("username");
+			if (user != "") {
+				alert(user + " خوش آمدید ");
+			} else {
+				user = prompt("لطفا نام خود را وارد کنید: ", "");
+				if (user != "" && user != null) {
+					setCookie("username", user, 365);
+				}
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='pics/lungs.png') }}">
+
+	<title>وب اپلیکیشن پیشبینی بیماری</title>
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/et-icons.css') }}">
+	<!-- Main style -->
+	<link type="text/css" href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+</head>
+<body>
+<!-- start loading -->
+<div class="preloader">
+	<img src="{{ url_for('static', filename='pics/loader.gif') }}" alt="Preloader image">
+</div>
+<!-- end loading -->
+<!-- start navabr and menu -->
+<nav class="navbar">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='pics/lungs.png') }}" data-active-url="{{ url_for('static', filename='pics/lungs.png') }}" alt=""></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left main-nav">
+				<!-- <li><a class="text-danger" href="#services">پیشبینی</a></li> -->
+				<li><a class="text-danger" href="{{ url_for('contactUs') }}">تماس با ما</a></li>
+				<li><a class="text-danger" href="{{ url_for('aboutUs') }}">درباره ما</a></li>
+				<!-- <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">ورود</a></li> -->
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+</nav>
+<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong> {{prediction_text}}</strong>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> -->
+
+<!-- end navabr and menu -->
+<!-- start intro section -->
+<header id="intro">
+	<div class="container">
+		<div class="table">
+			<div class="header-text">
+				<div class="row">
+					<!-- start type cursor -->
+					<div class="col-md-12 text-center">
+						<h3 class="light white">به بدن خود اهمیت دهید</h3>
+						<h1 class="white typed">تنها جایی که باید در آن زندگی کنید اینجاست</h1>
+						<span class="typed-cursor">|</span>
+					</div>
+					<!-- end type cursor -->
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+<!-- start footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 text-center-mobile">
+				<h3 class="white">پیشبینی بیماری سرطان ریه</h3>
+				<h5 class="light regular light-white"> با استفاده از یادگیری ماشین </h5>
+
+			</div>
+		</div>
+		<div class="row bottom-footer text-center-mobile">
+			<div class="col-sm-8">
+				<p>&copy; تمامی حقوق این سایت متعلق به دانشگاه مازندران است</a></p>
+				
+			</div>
+			<div class="col-sm-4 text-left text-center-mobile">
+				<ul class="social-footer">
+					<li><a href="https://www.linkedin.com/feed" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram"></i></a></li>
+					<li><a href="https://www.whatsapp.com" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- end footer section -->
+</body>
+</html>
